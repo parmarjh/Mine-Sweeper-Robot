@@ -35,7 +35,7 @@ class SquareMove(object):
         self.odometry_sub = None
 
         # ROS params
-        self.pub_rate = 0.1
+        self.pub_rate = 0.01
         self.queue_size = 2
 
         # Variables containing the sensor information that can be used in the main program
@@ -126,7 +126,7 @@ class SquareMoveVel(SquareMove):
 
     def move(self):
 
-        self.go_forward(2, 0.5)
+        self.go_forward(2, 5)
         self.turn(3.5, 0.5)
         self.go_forward(2, 0.5)
         self.turn(3.5, 0.5)
@@ -159,7 +159,7 @@ class SquareMoveOdom(SquareMove):
         print roll, pitch, yaw
         return yaw
 
-    def move_of(self, d, speed=0.5):
+    def move_of(self, d, speed=0.1711):
 
         x_init = self.odom_pose.position.x
         y_init = self.odom_pose.position.y
@@ -180,20 +180,19 @@ class SquareMoveOdom(SquareMove):
 
         sys.stdout.write("\n")
 
-    def turn_of(self, a, ang_speed=0.4):
+    def turn_of(self, a, ang_speed=0.2911):
 
         # Convert the orientation quaternion message to Euler angles
         a_init = self.get_z_rotation(self.odom_pose.orientation)
         print a_init
-
         # Set the angular velocity forward until angle is reached
-        while (self.get_z_rotation(self.odom_pose.orientation) - a_init) < a and not ros.is_shutdown():
+        while (abs(self.get_z_rotation(self.odom_pose.orientation) - a_init)) < a and not ros.is_shutdown():
 
             # sys.stdout.write("\r [TURN] The robot has turned of {:.2f}".format(self.get_z_rotation(self.odom_pose.orientation) - \
             #     a_init) + "rad over {:.2f}".format(a) + "rad")
             # sys.stdout.flush()
             # print (self.get_z_rotation(self.odom_pose.orientation) - a_init)
-
+		
             msg = Twist()
             msg.angular.z = ang_speed
             msg.linear.x = 0
@@ -209,13 +208,23 @@ class SquareMoveOdom(SquareMove):
             time.sleep(0.1)
 
         # Implement main instructions
-        # self.move_of(0.5)
-        self.turn_of(math.pi/4)
+        self.move_of(1)
+        self.turn_of(math.pi/2)
         self.move_of(0.5)
-        self.turn_of(math.pi/4)
+        self.turn_of(math.pi/2)
+        self.move_of(1)
+        self.turn_of(math.pi/2)
         self.move_of(0.5)
-        self.turn_of(math.pi/4)
+
+	self.turn_of(math.pi/2)
+	self.turn_of(math.pi/2)
+	self.move_of(0.5)
+        self.turn_of(math.pi/2,-0.3001)
+        self.move_of(1)
+        self.turn_of(math.pi/2,-0.3001)
         self.move_of(0.5)
+        self.turn_of(math.pi/2,-0.3001)
+        self.move_of(1)
         self.stop_robot()
 
 
