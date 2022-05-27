@@ -3,19 +3,20 @@ import rospy as ros
 import sys
 import time
 
+
 from geometry_msgs.msg import Twist, Pose
 from nav_msgs.msg import Odometry
 from tf.transformations import euler_from_quaternion, quaternion_from_euler
 
 
-__author__ = "Gabriel Urbain"
+__author__ = "Gabriel Urbain" 
 __copyright__ = "Copyright 2018, IDLab, UGent"
 
-__license__ = "MIT"
-__version__ = "1.0"
+__license__ = "MIT" 
+__version__ = "1.0" 
 __maintainer__ = "Gabriel Urbain"
-__email__ = "gabriel.urbain@ugent.be"
-__status__ = "Education"
+__email__ = "gabriel.urbain@ugent.be" 
+__status__ = "Education" 
 __date__ = "October 15th, 2018"
 
 
@@ -60,7 +61,7 @@ class SquareMove(object):
 
         # We publish for a second to be sure the robot receive the message
         while time.time() - self.t_init < 1 and not ros.is_shutdown():
-
+            
             self.vel_ros_pub(Twist())
             time.sleep(self.pub_rate)
 
@@ -93,8 +94,10 @@ class SquareMoveVel(SquareMove):
     """
 
     def __init__(self):
-
+        
         super(SquareMoveVel, self).__init__()
+
+    
 
     def go_forward(self, duration, speed):
 
@@ -153,17 +156,29 @@ class SquareMoveOdom(SquareMove):
 
         self.pub_rate = 0.1
 
+    def correct_angle(self, angle_in):
+
+        angle_in = math.fmod(angle_in + math.pi,2*math.pi)
+        if (angle_in < 0):
+           angle_in = angle_in + 2*math.pi           
+        return angle_in - math.pi
+
     def get_z_rotation(self, orientation):
 
         (roll, pitch, yaw) = euler_from_quaternion([orientation.x, orientation.y, orientation.z, orientation.w])
         print roll, pitch, yaw
         return yaw
+<<<<<<< HEAD
+        
+    def move_of(self, d, speed=0.1):#0.85
+=======
 
     def move_of(self, d, speed=0.1711):
+>>>>>>> 7467ef7773e5ffa3329b24226336946bbee56db5
 
         x_init = self.odom_pose.position.x
         y_init = self.odom_pose.position.y
-
+	
         # Set the velocity forward until distance is reached
         while math.sqrt((self.odom_pose.position.x - x_init)**2 + \
              (self.odom_pose.position.y - y_init)**2) < d and not ros.is_shutdown():
@@ -177,16 +192,24 @@ class SquareMoveOdom(SquareMove):
             msg.angular.z = 0
             self.vel_ros_pub(msg)
             time.sleep(self.pub_rate)
-
+	    #delta = abs(self.odom_pose.position.x - x_init)
         sys.stdout.write("\n")
 
+<<<<<<< HEAD
+    def turn_of(self, a, ang_speed=0.121):
+=======
     def turn_of(self, a, ang_speed=0.2911):
+>>>>>>> 7467ef7773e5ffa3329b24226336946bbee56db5
 
         # Convert the orientation quaternion message to Euler angles
         a_init = self.get_z_rotation(self.odom_pose.orientation)
         print a_init
         # Set the angular velocity forward until angle is reached
+<<<<<<< HEAD
+        while (abs(self.correct_angle(self.get_z_rotation(self.odom_pose.orientation) - a_init))) < a and not ros.is_shutdown():
+=======
         while (abs(self.get_z_rotation(self.odom_pose.orientation) - a_init)) < a and not ros.is_shutdown():
+>>>>>>> 7467ef7773e5ffa3329b24226336946bbee56db5
 
             # sys.stdout.write("\r [TURN] The robot has turned of {:.2f}".format(self.get_z_rotation(self.odom_pose.orientation) - \
             #     a_init) + "rad over {:.2f}".format(a) + "rad")
@@ -202,12 +225,46 @@ class SquareMoveOdom(SquareMove):
         sys.stdout.write("\n")
 
     def move(self):
+	
 
         # Wait that our python program has received its first messages
         while self.odom_pose is None and not ros.is_shutdown():
             time.sleep(0.1)
 
         # Implement main instructions
+<<<<<<< HEAD
+	#B----#A
+	#     #
+	#     #
+	#     #
+	#C----#O
+
+	########counter-clock wise loop#######
+	self.move_of(0.98,0.07) #go for 1 meter to reach point A
+        self.turn_of(1.55)	#left turn 1.55radians-left turning = 90 degree.
+	
+        self.move_of(0.47,0.07) #go for 1 meter to reach point B
+        self.turn_of(math.pi/2.0933)#math.pi/2.0944, left turn 1.499radians-left turning = 90 					degree.
+
+        self.move_of(0.98)	#go for 1 meter to reach point C
+        self.turn_of(1.485)	#left turn 1.485 radians-left turning = 90 degree.The reason 					why each time the turing angles are different is beacause of 					tolerance.(e.g.friction factor)
+
+        self.move_of(0.45)	#Back to the origin point O.
+	############
+	self.turn_of(math.pi*0.485)## 180degree turning
+	self.turn_of(math.pi*0.485)#ready for clockwise
+	##########
+
+	self.move_of(0.46,0.07)	#go for 1 meter to reach point C
+	self.turn_of(math.pi/2.079,-0.101)#right turn 1.499radians-left turning = 90 						degree.
+	self.move_of(0.99)	#go for 1 meter to reach point B
+	self.turn_of(math.pi/2.12,-0.101)
+	self.move_of(0.45)	#go for 1 meter to reach point A
+	self.turn_of(math.pi/2.1,-0.101)
+	self.move_of(0.96)	#go for 1 meter back to origin point O
+	self.turn_of(math.pi/2.1,0.101)#turn 90 degree
+	self.turn_of(math.pi/2.1,0.101)#turn another 90 degree
+=======
         self.move_of(1)
         self.turn_of(math.pi/2)
         self.move_of(0.5)
@@ -225,8 +282,9 @@ class SquareMoveOdom(SquareMove):
         self.move_of(0.5)
         self.turn_of(math.pi/2,-0.3001)
         self.move_of(1)
+>>>>>>> 7467ef7773e5ffa3329b24226336946bbee56db5
         self.stop_robot()
-
+	
 
 
 
@@ -250,8 +308,3 @@ if __name__ == '__main__':
     # Listen and Publish to ROS + execute moving instruction
     r.start_ros()
     r.move()
-
-
-
-
-
