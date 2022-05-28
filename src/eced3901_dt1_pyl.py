@@ -258,7 +258,7 @@ class SquareMoveOdom(SquareMove):
 	self.move_of(0.99)	#go for 1 meter to reach point B
 	self.turn_of(math.pi/2.12,-0.101)
 	self.move_of(0.45)	#go for 1 meter to reach point A
-	self.turn_of(math.pi/2.079,-0.101)
+	self.turn_of(math.pi/2.1,-0.101)
 	self.move_of(0.96)	#go for 1 meter back to origin point O
 	self.turn_of(math.pi/2.1,0.101)#turn 90 degree
 	self.turn_of(math.pi/2.1,0.101)#turn another 90 degree
