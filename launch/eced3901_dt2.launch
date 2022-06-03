@@ -7,7 +7,7 @@
 
   <!-- students need to add a few args -->
   <arg name="square_type" default="odom"/>
-  <arg name="map_saver_delay" default="90.0"/>
+  <arg name="map_saver_delay" default="110.0"/>
 
   <!-- TurtleBot3 -->
   <include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch">

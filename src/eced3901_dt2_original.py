@@ -189,15 +189,15 @@ class ShapeMoveOdom(ShapeMove):
         #self.move_of(1.1)
         #self.turn_of(math.pi*1/2)
         #self.move_of(1.1)
-        self.move_of(1.1,0.07) #go for 1.1 meter to reach point A
+        self.move_of(1.1,0.07) #go for 1 meter to reach point A
         self.turn_of(1.55)	#left turn 1.55radians-left turning = 90 degree.
 	
-        self.move_of(1.1,0.07) #go for 1.1 meter to reach point B
+        self.move_of(1.1,0.07) #go for 1 meter to reach point B
         self.turn_of(math.pi/2.0933)#math.pi/2.0944, left turn 1.499radians-left 					    turning = 90 degree.
 
-        self.move_of(1.1)	#go for 1.1 meter to reach point C
+        self.move_of(1.1)	#go for 1 meter to reach point C
         self.turn_of(1.485)	#left turn 1.485 radians-left turning = 90 degree.The 					reason why each time the turing angles are different 					is beacause of tolerance.(e.g.friction factor)
-        self.move_of(1.1)	        #Back to the origin point O.
+        self.move_of(1)	        #Back to the origin point O.
         # Clockwise through shape
         #self.turn_of(math.pi, 0.2)
         #self.move_of(1.1)

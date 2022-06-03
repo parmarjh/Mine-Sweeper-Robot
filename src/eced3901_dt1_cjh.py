@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import math
 import rospy as ros
 import sys
@@ -294,28 +295,28 @@ class SquareMoveVel(SquareMove):
         while self.odom_pose is None and not ros.is_shutdown():
             time.sleep(0.1)
 
-	ang_speed = 0.1451
+	ang_speed = 0.085
 
         # Implement main instructions
-        self.move_of(0.9)
+        self.move_of(1.1)
         self.turn_of(math.pi/2,ang_speed)
-        self.move_of(0.45)
+        self.move_of(1.1)
         self.turn_of(math.pi/2,ang_speed)
-        self.move_of(0.9)
+        self.move_of(1.1)
         self.turn_of(math.pi/2,ang_speed)
-        self.move_of(0.45)
+        self.move_of(1.1)
 
-	self.turn_of(math.pi/2,ang_speed)
-	self.turn_of(math.pi/2,ang_speed)
-	self.move_of(0.45)
-        self.turn_of(math.pi/2,-ang_speed)
-        self.move_of(0.9)
-        self.turn_of(1.5411,-ang_speed)
-        self.move_of(0.45)
-        self.turn_of(math.pi/2,-ang_speed)
-        self.move_of(0.9)
-        self.turn_of(math.pi/2,-ang_speed)
-        self.turn_of(math.pi/2,-ang_speed)
+	#self.turn_of(math.pi/2,ang_speed)
+	#self.turn_of(math.pi/2,ang_speed)
+	#self.move_of(0.45)
+        #self.turn_of(math.pi/2,-ang_speed)
+        #self.move_of(0.9)
+        #self.turn_of(1.5411,-ang_speed)
+        #self.move_of(0.45)
+        #self.turn_of(math.pi/2,-ang_speed)
+        #self.move_of(0.9)
+        #self.turn_of(math.pi/2,-ang_speed)
+        #self.turn_of(math.pi/2,-ang_speed)
         self.stop_robot()
 
 

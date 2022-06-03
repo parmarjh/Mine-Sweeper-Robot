@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import math
 import rospy as ros
 import sys
@@ -238,30 +239,30 @@ class SquareMoveOdom(SquareMove):
 	#C----#O
 
 	########counter-clock wise loop#######
-	self.move_of(0.98,0.07) #go for 1 meter to reach point A
+	self.move_of(1.1,0.07) #go for 1 meter to reach point A
         self.turn_of(1.55)	#left turn 1.55radians-left turning = 90 degree.
 	
-        self.move_of(0.47,0.07) #go for 1 meter to reach point B
+        self.move_of(1.1,0.07) #go for 1 meter to reach point B
         self.turn_of(math.pi/2.0933)#math.pi/2.0944, left turn 1.499radians-left turning = 90 					degree.
 
-        self.move_of(0.98)	#go for 1 meter to reach point C
+        self.move_of(1.1)	#go for 1 meter to reach point C
         self.turn_of(1.485)	#left turn 1.485 radians-left turning = 90 degree.The reason 					why each time the turing angles are different is beacause of 					tolerance.(e.g.friction factor)
 
-        self.move_of(0.45)	#Back to the origin point O.
+        self.move_of(1)	#Back to the origin point O.
 	
-	self.turn_of(math.pi*0.485)## 180degree turning
-	self.turn_of(math.pi*0.485)#ready for clockwise
-	##########
+	#self.turn_of(math.pi*0.485)## 180degree turning
+	#self.turn_of(math.pi*0.485)#ready for clockwise
 
-	self.move_of(0.46,0.07)	#go for 1 meter to reach point C
-	self.turn_of(math.pi/2.079,-0.101)#right turn 1.499radians-left turning = 90 						degree.
-	self.move_of(0.99)	#go for 1 meter to reach point B
-	self.turn_of(math.pi/2.12,-0.101)
-	self.move_of(0.45)	#go for 1 meter to reach point A
-	self.turn_of(math.pi/2.1,-0.101)
-	self.move_of(0.96)	#go for 1 meter back to origin point O
-	self.turn_of(math.pi/2.1,0.101)#turn 90 degree
-	self.turn_of(math.pi/2.1,0.101)#turn another 90 degree
+
+	#self.move_of(0.46,0.07)	#go for 1 meter to reach point C
+	#self.turn_of(math.pi/2.079,-0.101)#right turn 1.499radians-left turning = 90 						degree.
+	#self.move_of(0.99)	#go for 1 meter to reach point B
+	#self.turn_of(math.pi/2.12,-0.101)
+	#self.move_of(0.45)	#go for 1 meter to reach point A
+	#self.turn_of(math.pi/2.1,-0.101)
+	#self.move_of(0.96)	#go for 1 meter back to origin point O
+	#self.turn_of(math.pi/2.1,0.101)#turn 90 degree
+	#self.turn_of(math.pi/2.1,0.101)#turn another 90 degree
 
         self.stop_robot()
 	
