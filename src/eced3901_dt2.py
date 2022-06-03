@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import math
 import rospy as ros
 import sys
@@ -115,7 +116,7 @@ class ShapeMoveOdom(ShapeMove):
         return angle_in - math.pi
     
     #students need to limit/adj linear velocity =============================
-    def move_of(self, d, speed=0.15):
+    def move_of(self, d, speed=0.085):
 
         x_init = self.odom_pose.position.x
         y_init = self.odom_pose.position.y
@@ -181,23 +182,23 @@ class ShapeMoveOdom(ShapeMove):
         # Implement main fixed Dead-Reckon coordinate instructions
         
         # Counterclockwise through shape
-        self.move_of(0.5)
+        self.move_of(1.1)
         self.turn_of(math.pi*1/2, 0.2)
-        self.move_of(1.0)
+        self.move_of(1.1)
         self.turn_of(math.pi*1/2, 0.2)
-        self.move_of(0.5)
+        self.move_of(1.1)
         self.turn_of(math.pi*1/2, 0.2)
-        self.move_of(1.0)
+        self.move_of(1.1)
        
         # Clockwise through shape
-        self.turn_of(math.pi, 0.2)
-        self.move_of(1.0)
-        self.turn_of(math.pi*1/2, -0.2)
-        self.move_of(0.5)
-        self.turn_of(math.pi*1/2, -0.2)
-        self.move_of(1.0)
-        self.turn_of(math.pi*1/2, -0.2)
-        self.move_of(0.5)
+        #self.turn_of(math.pi, 0.2)
+        #self.move_of(1.1)
+        #self.turn_of(math.pi*1/2, -0.2)
+        #self.move_of(1.1)
+        #self.turn_of(math.pi*1/2, -0.2)
+        #self.move_of(1.1)
+        #self.turn_of(math.pi*1/2, -0.2)
+        #self.move_of(1.1)
         
         # Return to original orientation
         self.turn_of(math.pi)

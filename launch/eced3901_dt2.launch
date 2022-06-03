@@ -1,13 +1,13 @@
-
 <launch>
   <!-- Arguments -->
   <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
   <arg name="slam_methods" default="gmapping" doc="slam type [gmapping, cartographer, hector, karto, frontier_exploration]"/>
   <arg name="configuration_basename" default="turtlebot3_lds_2d.lua"/>
   <arg name="open_rviz" default="true"/>
-  <arg name="node_start_delay" default="1.0" />
-  <node name="listener" pkg="roscpp_tutorials" type="listener" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' " />
-  <node name="eced3901_dt1_VS" pkg="my_catkin_ws/src/eced3901-2022-team28/src" type="eced3901_dt1_VS.py" output="screen" />
+
+  <!-- students need to add a few args -->
+  <arg name="square_type" default="odom"/>
+  <arg name="map_saver_delay" default="90.0"/>
 
   <!-- TurtleBot3 -->
   <include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch">
@@ -20,10 +20,22 @@
     <arg name="configuration_basename" value="$(arg configuration_basename)"/>
   </include>
 
+  <!-- students need to add their code as a node from DT1-modified to square, also will need troubleshoot definition at header -->
+  <!-- SQUARE node -->
+  <node pkg="eced3901-2022-team28" name="square_move" type="eced3901_dt2.py" args=" $(arg square_type)" output="screen">
+  </node>
+
+
   <!-- rviz -->
   <group if="$(arg open_rviz)"> 
     <node pkg="rviz" type="rviz" name="rviz" required="true"
           args="-d $(find turtlebot3_slam)/rviz/turtlebot3_$(arg slam_methods).rviz"/>
   </group>
+
+
+  <!-- students need to add this timed node -->
+  <!-- save map using delayed map server -->
+  <node name="savemap" pkg="map_server" type="map_saver" args=" -f $(find eced3901-2022-team28)/maps/my_map_dt2" launch-prefix="bash -c 'sleep $(arg map_saver_delay); $0 $@' " required="true" output="screen"/>
+
 
 </launch>
