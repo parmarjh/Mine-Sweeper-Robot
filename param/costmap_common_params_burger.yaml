@@ -1,7 +1,7 @@
 obstacle_range: 3.0
 raytrace_range: 3.5
 
-footprint: [[-0.03, -0.03], [-0.03, 0.03], [0.03, 0.03], [0.03, -0.03]]
+#footprint: [[-0.03, -0.03], [-0.03, 0.03], [0.03, 0.03], [0.03, -0.03]]
 robot_radius: 0.11
 inflation_radius: 0.3
 cost_scaling_factor: 7.0

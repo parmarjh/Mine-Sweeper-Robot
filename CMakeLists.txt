@@ -206,3 +206,5 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+add_executable(eced3901-2022-team28 src/simple_navigation_goals.cpp)
+target_link_libraries(eced3901-2022-team28 ${catkin_LIBRARIES})
