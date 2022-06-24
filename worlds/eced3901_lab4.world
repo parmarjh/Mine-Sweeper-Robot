@@ -40,10 +40,10 @@
       <pose frame=''>0 0 0 0 -0 0</pose>
       <link name='obstacle'>
         <collision name='obstacle_1'>
-          <pose>0.9 0.9 0.25 0 0 0</pose>
+          <pose>2.134 2.134 0.25 0 0 0</pose>
           <geometry>
             <cylinder>
-              <radius>0.15</radius>
+              <radius>0.13</radius>
               <length>0.5</length>
             </cylinder>
           </geometry>
@@ -60,10 +60,10 @@
         </collision>
 
         <visual name='obstacle_1'>
-          <pose>0.9 0.9 0.25 0 0 0</pose>
+          <pose>2.134 2.134 0.25 0 0 0</pose>
           <geometry>
             <cylinder>
-              <radius>0.15</radius>
+              <radius>0.13</radius>
               <length>0.5</length>
             </cylinder>
           </geometry>
@@ -74,115 +74,58 @@
             </script>
           </material>
         </visual>
-<!--
-        <collision name='obstacle_2'>
-          <pose>-0.6 0.6 0.25 0 0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.15</radius>
-              <length>0.5</length>
-            </cylinder>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <bounce/>
-            <friction>
-              <ode/>
-            </friction>
-            <contact>
-              <ode/>
-            </contact>
-          </surface>
-        </collision>
 
+	<!-- Mine 1 -->
         <visual name='obstacle_2'>
-          <pose>-0.6 0.6 0.25 0 0 0</pose>
+          <pose>0.914 2.134 0.03 0 0 0</pose>
           <geometry>
             <cylinder>
-              <radius>0.15</radius>
-              <length>0.5</length>
+              <radius>0.13</radius>
+              <length>0.06</length>
             </cylinder>
           </geometry>
           <material>
             <script>
               <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/White</name>
+              <name>Gazebo/Green</name>
             </script>
           </material>
         </visual>
 
-        <collision name='obstacle_3'>
-          <pose>0.6 -0.6 0.25 0 0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.15</radius>
-              <length>0.5</length>
-            </cylinder>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <bounce/>
-            <friction>
-              <ode/>
-            </friction>
-            <contact>
-              <ode/>
-            </contact>
-          </surface>
-        </collision>
-
+	<!-- Mine 2 -->
         <visual name='obstacle_3'>
-          <pose>0.6 -0.6 0.25 0 0 0</pose>
+          <pose>2.134 3.353 0.03 0 0 0</pose>
           <geometry>
             <cylinder>
-              <radius>0.15</radius>
-              <length>0.5</length>
+              <radius>0.13</radius>
+              <length>0.06</length>
             </cylinder>
           </geometry>
           <material>
             <script>
               <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/White</name>
+              <name>Gazebo/Green</name>
             </script>
           </material>
         </visual>
 
-        <collision name='obstacle_4'>
-          <pose>0.6 0.6 0.25 0 0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.15</radius>
-              <length>0.5</length>
-            </cylinder>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <bounce/>
-            <friction>
-              <ode/>
-            </friction>
-            <contact>
-              <ode/>
-            </contact>
-          </surface>
-        </collision>
-
+	<!-- Mine 3 -->
         <visual name='obstacle_4'>
-          <pose>0.6 0.6 0.25 0 0 0</pose>
+          <pose>3.353 2.134 0.03 0 0 0</pose>
           <geometry>
             <cylinder>
-              <radius>0.15</radius>
-              <length>0.5</length>
+              <radius>0.13</radius>
+              <length>0.06</length>
             </cylinder>
           </geometry>
           <material>
             <script>
               <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/White</name>
+              <name>Gazebo/Green</name>
             </script>
           </material>
         </visual>
--->
+
       </link>
       <static>1</static>
     </model>
@@ -195,7 +138,7 @@
 
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>0.9 0.9 5.0 0 1.5708 1.5708</pose>
+        <pose>2.134 2.134 9.0 0 1.5708 1.5708</pose>
         <view_controller>orbit</view_controller>
       </camera>
     </gui>
