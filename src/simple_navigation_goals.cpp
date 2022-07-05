@@ -17,20 +17,17 @@ int main(int argc, char** argv){
   //Set up the goal point from MoveBaseGoal library
   move_base_msgs::MoveBaseGoal goal_point[4];
   //Set up the coordinates of wayppoints
-  double wayppoints[8][3]={{0.9144,2.1336,0.997183},// Position of 1st known mine
-{2.1336,3.3528,0.676476},// Position of 2nd known mine
-{3.3528,2.1336,-0.009813},// Position of 3rd known mine
-{0.412467,0.420511,0.724897}};
+  double wayppoints[8][3]={{1.5211,0.4,1.5708},{1.5211,2.0,3.1415},{0.2721,2.0,4.7124},{0.2721,1.2322,6.2832}};
   //we'll send a goal to the robot to move 1 meter forward
-  for(int i = 0 ; i<4 ;i++){
+  for(int i = 0 ; i<5 ;i++){
 	    //Read map information
             goal_point[i].target_pose.header.frame_id = "map";
  	    //Setup the sychronus time
 	    goal_point[i].target_pose.header.stamp = ros::Time::now();
 	    //Set x,y position and angular speed
-            goal_point[i].target_pose.pose.position.x = wayppoints[i][1];
-            goal_point[i].target_pose.pose.position.y = wayppoints[i][2];
-            goal_point[i].target_pose.pose.orientation.w =wayppoints[i][3];
+            goal_point[i].target_pose.pose.position.x = wayppoints[i][0];
+            goal_point[i].target_pose.pose.position.y = wayppoints[i][1];
+            goal_point[i].target_pose.pose.orientation.w =wayppoints[i][2];
 	    ROS_INFO("Sending goal");
 	    //Sending the goal point to robot
 	    ac.sendGoal(goal_point[i]);
