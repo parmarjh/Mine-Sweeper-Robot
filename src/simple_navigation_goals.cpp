@@ -20,6 +20,9 @@ void chatterCallback(const std_msgs::String::ConstPtr& msg)
 //Main function to control the robot move at four waypoints
 //Update the map information
 int main(int argc, char** argv){
+
+  int count = 5000;
+
   ros::init(argc, argv, "simple_navigation_goals");
   //tell the action client that we want to spin a thread by default
   MoveBaseClient ac("move_base", true);
@@ -29,16 +32,14 @@ int main(int argc, char** argv){
 	ROS_INFO("Waiting for the move_base action server to come up");
   }
   //Set up the goal point from MoveBaseGoal library
-  move_base_msgs::MoveBaseGoal goal_point[4];
+  move_base_msgs::MoveBaseGoal goal_point[5];
+  goal_point[5].target_pose.pose.position.x = 3.658;
+  goal_point[5].target_pose.pose.position.x = 0.61;
+  goal_point[5].target_pose.pose.orientation.w = 0.3141;
   //Set up the coordinates of wayppoints
   double wayppoints[8][3]={{1.5211,0.4,1.5708},{1.5211,2.0,3.1415},{0.2721,2.0,4.7124},{0.2721,1.2322,6.2832}};
   //we'll send a goal to the robot to move 1 meter forward
   for(int i = 0 ; i<5 ;i++){
-
-
-	    ros::NodeHandle n;
-  	    ros::Subscriber sub = n.subscribe("chatter", 200, chatterCallback);
-	    
 
 	    //Read map information
             goal_point[i].target_pose.header.frame_id = "map";
@@ -51,6 +52,7 @@ int main(int argc, char** argv){
 	    ROS_INFO("Sending goal");
 	    //Sending the goal point to robot
 	    ac.sendGoal(goal_point[i]);
+
 	    //Get feedback from robot
   	    ac.waitForResult();
     }
