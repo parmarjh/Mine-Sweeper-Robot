@@ -8,6 +8,7 @@ project(eced3901-2022-team28)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  nav_msgs
   actionlib
   move_base_msgs
   roscpp
@@ -70,11 +71,11 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-generate_messages(
-   DEPENDENCIES 
-   std_msgs
-   move_base_msgs
-)
+#generate_messages(
+#   DEPENDENCIES 
+#   std_msgs
+#   move_base_msgs
+#)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -108,7 +109,13 @@ generate_messages(
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES eced3901-2022-team28
-#  CATKIN_DEPENDS actionlib move_base_msgs roscpp rospy std_msgs
+  CATKIN_DEPENDS 
+    nav_msgs
+#   actionlib 
+#   move_base_msgs 
+#   roscpp 
+#   rospy 
+#   std_msgs
 #  DEPENDS system_lib
 )
 
@@ -208,4 +215,6 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 add_executable(eced3901-2022-team28 src/simple_navigation_goals.cpp)
+#add_executable(eced3901-2022-team28 src/metal_detection.cpp)
+#add_dependencies(eced3901-2022-team28 metal_detection_cpp)
 target_link_libraries(eced3901-2022-team28 ${catkin_LIBRARIES})

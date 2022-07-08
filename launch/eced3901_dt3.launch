@@ -4,6 +4,7 @@
   <arg name="map_file" default="$(find eced3901-2022-team28)/maps/my_map.yaml"/>
   <arg name="open_rviz" default="true"/>
   <arg name="move_forward_only" default="false"/>
+  <arg name="square_type" default="odom"/>
 
   <!-- Turtlebot3 -->
   <include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch">
@@ -27,4 +28,9 @@
     <node pkg="rviz" type="rviz" name="rviz" required="true"
           args="-d $(find eced3901-2022-team28)/rviz/eced3901_navigation.rviz"/>
   </group>
+
+  <!-- Metal Detection node -->
+  <node pkg="eced3901-2022-team28" name="location_monitor" type="location_monitor_node.py" output="screen">
+  </node>
+
 </launch>
