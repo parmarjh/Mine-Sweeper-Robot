@@ -109,8 +109,8 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES eced3901-2022-team28
-  CATKIN_DEPENDS 
-    nav_msgs
+#  CATKIN_DEPENDS 
+#    nav_msgs
 #   actionlib 
 #   move_base_msgs 
 #   roscpp 

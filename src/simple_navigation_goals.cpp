@@ -1,8 +1,9 @@
 #include <ros/ros.h>
-#include <std_msgs/string.h>
+#include <std_msgs/Float32.h>
 #include <move_base_msgs/MoveBaseAction.h>
 #include <actionlib/client/simple_action_client.h>
 
+extern float md_volt;
 
 //define actionlib from move_base_msgs library
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>
@@ -10,9 +11,9 @@ MoveBaseClient;
 
 
 // Global Functions for subscriber
-void chatterCallback(const std_msgs::String::ConstPtr& msg)
+void chatterCallback(const std_msgs::Float32::data& msg)
 {
-   ROS_INFO("I heard: [%s]", msg->data.c_str());
+   
 }
 
 
