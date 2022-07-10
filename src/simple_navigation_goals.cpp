@@ -11,10 +11,10 @@ MoveBaseClient;
 
 
 // Global Functions for subscriber
-void chatterCallback(const std_msgs::Float32::data& msg)
-{
+//void chatterCallback(const std_msgs::Float32::data& msg)
+//{
    
-}
+//}
 
 
 //Main function to control the robot move at four waypoints
@@ -29,11 +29,11 @@ int main(int argc, char** argv){
 	ROS_INFO("Waiting for the move_base action server to come up");
   }
   //Set up the goal point from MoveBaseGoal library
-  move_base_msgs::MoveBaseGoal goal_point[4];
+  move_base_msgs::MoveBaseGoal goal_point[36];
   //Set up the coordinates of wayppoints
-  double wayppoints[8][3]={{1.5211,0.4,1.5708},{1.5211,2.0,3.1415},{0.2721,2.0,4.7124},{0.2721,1.2322,6.2832}};
+  double wayppoints[37][3]={{0.61,0.0,1},{1.22,0.0,1},{1.83,0.0,1},{1.83,0.0,0.7071},{1.83,0.56,0.7071},{2.7432,1.524,1},{3.3528,1.524,-0.7071},{3.3528,0.9144,1},{3.9624,0.9144,0.7071},{3.9624,1.524,0.7071},{3.9624,2.1336,0.7071},{3.9624,2.7432,0.7071},{3.9624,3.3528,0.7071},{3.9624,3.9628,-0.7071},{3.9624,2.7432,0.0},{0.2721,1.2322,6.2832},{0.2721,1.2322,6.2832},{0.2721,1.2322,6.2832},{0.2721,1.2322,6.2832},{0.2721,1.2322,6.2832},{0.2721,1.2322,6.2832},{0.2721,1.2322,6.2832},{0.2721,1.2322,6.2832},{0.2721,1.2322,6.2832},{0.2721,1.2322,6.2832},{0.2721,1.2322,6.2832},{0.2721,1.2322,6.2832},{0.2721,1.2322,6.2832},{0.2721,1.2322,6.2832},{0.2721,1.2322,6.2832},{0.2721,1.2322,6.2832},{0.2721,1.2322,6.2832},{0.2721,1.2322,6.2832},{0.2721,1.2322,6.2832},{0.2721,1.2322,6.2832},{0.2721,1.2322,6.2832},{0.2721,1.2322,6.2832}};
   //we'll send a goal to the robot to move 1 meter forward
-  for(int i = 0 ; i<5 ;i++){
+  for(int i = 0 ; i<36 ;i++){
 
 	    //Read map information
             goal_point[i].target_pose.header.frame_id = "map";
@@ -46,9 +46,7 @@ int main(int argc, char** argv){
 	    ROS_INFO("Sending goal");
 	    //Sending the goal point to robot
 	    ac.sendGoal(goal_point[i]);
-
-	    //Get feedback from robot
-  	    ac.waitForResult();
+	    ac.waitForResult();
     }
   //Check Robot state
   if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
